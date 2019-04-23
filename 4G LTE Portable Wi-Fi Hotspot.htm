@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<!-- saved from url=(0019)http://smile-admin/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link href="./4G LTE Portable Wi-Fi Hotspot_files/sprint4G.css" rel="stylesheet" type="text/css">
+<link href="./4G LTE Portable Wi-Fi Hotspot_files/colorbox.css" rel="stylesheet" type="text/css">
+
+<!--
+<title>Smart 4G LTE USB Modem</title>
+-->
+<title>4G LTE Portable Wi-Fi Hotspot</title>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/common.js"></script>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/func.js"></script>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/jquery-1.4.3.min.js"></script>
+<script type="text/JavaScript" src="./4G LTE Portable Wi-Fi Hotspot_files/rpc.js"></script>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/table.js"></script>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/verify.js"></script>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/jquery.colorbox-min.js"></script>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/jquery.cookie.js"></script>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/jquery-lang.js" charset="utf-8"></script>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/ko.js" charset="euc-kr"></script>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/es.js" charset="utf-8"></script>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/pt.js" charset="utf-8"></script>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/fr.js" charset="utf-8"></script>
+<script type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/ru.js" charset="utf-8"></script>
+<script type="text/javascript">
+<!--
+var sid = '';
+$.ajaxSetup({cache: false }); 
+-->
+</script>
+
+<script language="JavaScript" type="text/javascript" src="./4G LTE Portable Wi-Fi Hotspot_files/jqueryprogressbar.js"></script>
+<script type="text/JavaScript" src="./4G LTE Portable Wi-Fi Hotspot_files/connobj.js"></script>
+<script type="text/JavaScript" src="./4G LTE Portable Wi-Fi Hotspot_files/index.js"></script>
+<script type="text/javascript">
+<!--
+function showFWUpgrade(msg) {
+  window.gAutoRefresh = 1;
+  $.colorbox({width:"550", height:"240", overlayClose:false, opacity:0.4, iframe:true, href:"upgrade.htm"});
+}
+
+var default_lang = 'en';
+var lang_rpc = null;
+
+$(document).ready(function() { 
+    
+    top.default_lang = "en";
+    window.lang = new jquery_lang_js();
+    window.lang.run();
+    window.lang.change(top.default_lang);
+
+    window.document.getElementById('language').value = top.default_lang;
+    window.document.getElementById('top_menu0_off').src = "img/" + top.default_lang +"/shape_btn_upstate_DeviceNetwork.png";
+    window.document.getElementById('top_menu0_on').src = "img/" + top.default_lang +"/shape_btn_downstate_DeviceNetwork.png";
+    window.document.getElementById('top_menu1_off').src = "img/" + top.default_lang +"/shape_btn_upstate_CheckUsage.png";
+    window.document.getElementById('top_menu1_on').src = "img/" + top.default_lang +"/shape_btn_downstate_CheckUsage.png";
+    window.document.getElementById('top_menu2_off').src = "img/" + top.default_lang +"/shape_btn_upstate_wifi.png";
+    window.document.getElementById('top_menu2_on').src = "img/" + top.default_lang +"/shape_btn_downstate_wifi.png";
+    window.document.getElementById('top_menu3_off').src = "img/" + top.default_lang +"/shape_btn_upstate_Settings.png";
+    window.document.getElementById('top_menu3_on').src = "img/" + top.default_lang +"/shape_btn_downstate_Settings.png";
+    window.document.getElementById('top_menu4_off').src = "img/" + top.default_lang +"/shape_btn_upstate_Help.png";
+    window.document.getElementById('top_menu4_on').src = "img/" + top.default_lang +"/shape_btn_downstate_help.png";
+
+    window.document.getElementById('connectbtn3g_activate').src = "img/" + top.default_lang +"/shape_btn_activate.png";
+    window.document.getElementById('connectbtn3g_no_activate').src = "img/" + top.default_lang +"/shape_btn_not_activate.png";
+    window.document.getElementById('connectbtn3g_connect').src = "img/" + top.default_lang +"/shape_btn_connect.png";
+    window.document.getElementById('connectbtn3g_no_connect').src = "img/" + top.default_lang +"/shape_btn_connect_disable.png";
+    window.document.getElementById('connectbtn3g_cancel').src = "img/" + top.default_lang +"/shape_btn_connect_cancel.png";
+    window.document.getElementById('connectbtn3g_disconnect').src = "img/" + top.default_lang +"/shape_btn_disconnect.png";
+    window.document.getElementById('connectbtn3g_nosignal').src = "img/" + top.default_lang +"/shape_btn_nosignal.png";
+    window.document.getElementById('connectbtn3g_airplane').src = "img/" + top.default_lang +"/shape_btn_airplane.png";
+
+    window.document.getElementById('connectbtnLTE_activate').src = "img/" + top.default_lang +"/shape_btn_activate.png";
+    window.document.getElementById('connectbtnLTE_no_activate').src = "img/" + top.default_lang +"/shape_btn_not_activate.png";
+    window.document.getElementById('connectbtnLTE_connect').src = "img/" + top.default_lang +"/shape_btn_connect.png";
+    window.document.getElementById('connectbtnLTE_no_connect').src = "img/" + top.default_lang +"/shape_btn_connect_disable.png";
+    window.document.getElementById('connectbtnLTE_cancel').src = "img/" + top.default_lang +"/shape_btn_connect_cancel.png";
+    window.document.getElementById('connectbtnLTE_disconnect').src = "img/" + top.default_lang +"/shape_btn_disconnect.png";
+    window.document.getElementById('connectbtnLTE_nosignal').src = "img/" + top.default_lang +"/shape_btn_nosignal.png";
+    window.document.getElementById('connectbtnLTE_airplane').src = "img/" + top.default_lang +"/shape_btn_airplane.png";
+
+    var txt = window.lang.convert("Default password: admin", top.default_lang);
+    window.document.getElementById('admin_title').title = txt;
+    window.document.getElementById('admin_input_title').title = txt;
+
+    var txt_pw = window.lang.convert("Password", top.default_lang);
+    window.document.getElementById('login_dp').value = txt_pw;
+
+    var level = parseInt("0");
+    
+    index_init(level);
+
+    var errmsg = checkLoginResult();
+    if (errmsg != "") {
+        showMssageBox("inline_msgbox", errmsg);
+    }
+
+    if ( parseInt("0") > 0) {
+        $("#logout_area").show();
+        $("#login_area").hide();
+    } else {
+        $("#logout_area").hide();
+        $("#login_area").show();
+    }
+    
+ });
+
+function doSetLangCallback()
+{
+    window.lang.run();
+    window.lang.change(top.default_lang);
+    window.location.reload();
+}
+
+function errorSetLangCallback()
+{
+}
+
+function changeLanguage()
+{
+    var val = $("#language").attr('value');
+
+    if(val != top.default_lang)
+    {
+        if(val == 'en')
+            top.default_lang = 'en';
+        else if(val == 'fr')
+            top.default_lang = 'fr';
+        else if(val == 'es')
+            top.default_lang = 'es';
+        else if(val == 'ru')
+            top.default_lang = 'ru';
+        else if(val == 'pt')
+            top.default_lang = 'pt';
+        else if(val == 'ko')
+            top.default_lang = 'ko';
+        else
+            top.default_lang = 'en';
+    
+        lang_rpc  = new RPC("lang_query");
+        var options = {
+            successFn:doSetLangCallback,
+            errorFn:errorSetLangCallback,
+            timeout:3000
+        };
+        window.lang_rpc.reset();
+        window.lang_rpc.addFunction("fti_language_set",  top.default_lang);
+        window.lang_rpc.run(options);
+/*
+        window.lang.run();
+        window.lang.change(top.default_lang);
+        window.location.reload();
+*/
+    }
+}
+
+function doLogoutCfm() {
+    showDialogEx("inline_logout", "60%", "150px");
+}
+
+function doLogout() {
+    setElementValue("LOGOUT_SID", sid);
+    $("#logout_form").trigger('submit');
+}
+
+ function checkAdminLogin()
+{
+        //alert(doc.E("login").value);
+        var url = ifr.window.location.pathname;
+        url = url.substring(1);
+        var redirect_url = "index.html?" + url;
+        $("#REDIRECT").attr("value", redirect_url);
+        $("#REDIRECT_ERR").attr("value", redirect_url);
+        
+        if(doc.E("login").value.length == 0)
+        {
+            //top.showDialogLogin("inline_passwd_empty", "35%", "auto");
+        }
+        else
+        {
+            doc.E("_id_passwd").value = doc.E("login").value;
+            $("#Login_form").submit();
+        }
+}
+
+ function showLogin()
+{
+    $("#login").attr('value',"");
+    $("#login_dp").hide();
+    $("#login").show();
+    $("#login").focus();
+}
+
+ function hideLogin()
+{
+    if($("#login").attr('value')==""){
+        var pw = window.lang.convert('Password', top.default_lang);
+
+        $("#login_dp").attr('value',pw);
+        $("#login").hide();
+        $("#login_dp").show();
+        //$("#login_dp").focus();
+    }
+    $("#login_dp").disabled = true;
+}
+
+function pwdFocus() {
+    $('#login_dp').hide();
+    $('#login').show();
+    $('#login').focus();
+}
+
+function pwdBlur() {
+    if ($('#login').attr('value') == '') {
+        $('#login').hide();
+        $('#login_dp').show();
+    }
+}
+/* -------------------------- */
+/*  Event function            */
+/* -------------------------- */
+$(function(){
+  $("div.fieldColumn > div:has(div.fieldCMTitle), .fieldCMTitle").click(function(){
+	 $(this).next().toggle("fast");
+	 var imgSrc = $(this).find(".open_icon").attr("src");
+	 if(imgSrc == "img/open_cm.png")
+	 {
+	    $(this).find(".open_icon").attr("src", "img/close_cm.png");
+	    $("#cm_view").html("View Networks");
+	 }
+	 else
+	 {
+	    $(this).find(".open_icon").attr("src", "img/open_cm.png");
+	    $("#cm_view").html("Hide Networks");
+	 }
+  });
+});
+
+$(function(){
+    $('input:text').bind('keydown', function(e) {
+        var key = window.event ? event.keyCode : event.which; 
+        if (key == 13) {
+//            alert('enter');
+            return false;
+        }
+    });
+    $('input:password').bind('keydown', function(e) {
+        var key = window.event ? event.keyCode : event.which; 
+        if (key == 13) {
+//            alert('enter');
+            return false;
+        }
+    });
+});
+
+
+
+-->
+</script>
+</head>
+<body class="gradient mainframe"><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" style="padding-bottom: 0px; padding-right: 0px; display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear:left"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxLoadedContent" style="width: 0px; height: 0px; overflow: hidden;" class=""></div><div id="cboxLoadingOverlay" class=""></div><div id="cboxLoadingGraphic" class=""></div><div id="cboxTitle" class=""></div><div id="cboxCurrent" class=""></div><div id="cboxNext" class=""></div><div id="cboxPrevious" class=""></div><div id="cboxSlideshow" class=""></div><div id="cboxClose" class=""></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear:left"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position:absolute; width:9999px; visibility:hidden; display:none"></div></div>
+    <div class="display-none">
+        <div id="inline_msgbox" class="colorbox_dialog_blue">
+</div>
+<div id="inline_reloadPage" class="colorbox_dialog_blue">
+  <table width="100%"><tbody><tr><td>
+    <div id="msg" style="font: 14px/1 Arial;font-weight: bolder;color: #999999;">
+    <p>The webpage will refresh because the system may be rebooted.</p>
+    </div>
+    <p align="center"><input type="button" value="Refresh" class="button" onclick="top.location.reload()"></p>
+  </td></tr><tr><td align="right">
+      <img src="./4G LTE Portable Wi-Fi Hotspot_files/logo_web.png" height="47px">
+  </td></tr></tbody></table>
+</div>
+<div id="inline_3gNotify" class="colorbox_dialog_blue">
+  <table width="100%"><tbody><tr><td align="left">
+    <div id="msg" style="font: 14px/1 Arial;font-weight: bolder;color: #999999;">
+	<p>Your Franklin Connection Manager has determined that 3G will provide the best connection at this time.  Do you want to connect to 3G now?</p>
+    </div>
+	<p align="center"><input type="button" value="Yes" class="button" onclick="alert(&#39;yes&#39;)"> &nbsp; <input type="button" value="No" class="button" onclick="hideAlertMessage();"></p>
+  </td></tr><tr><td align="right">
+      <img src="./4G LTE Portable Wi-Fi Hotspot_files/logo_web.png" height="47px">
+  </td></tr></tbody></table>	
+</div>
+<div id="inline_BusyNotify" class="colorbox_dialog_blue">
+  <table width="100%"><tbody><tr><td align="left">
+    <div id="msg" style="font: 14px/1 Arial;font-weight: bolder;color: #999999;">
+    <p>DO NOT REMOVE YOUR USB DEVICE FROM THE COMPUTER WHILE THIS MESSAGE IS DISPLAYED</p><br> 
+    <p>Important Notice:<br><br>
+        Your USB device is applying new software or service settings.  This may take a few minutes.<br><br>
+        It is very important that the device remain in the computer's USB port during this operation.  It is best to plug your computer into a wall outlet at this time to reduce the risk of losing power during this operation.
+    </p>
+    </div>
+  </td></tr><tr><td align="right">
+      <br><img src="./4G LTE Portable Wi-Fi Hotspot_files/logo_web.png" height="47px">
+  </td></tr></tbody></table>	
+</div>
+
+<div id="inline_scenarioA" class="colorbox_dialog_blue">
+    <div class="block_title"><p align="center">Network Logon Credentials</p></div><br>
+    <div class="bGroup4">
+        <br>
+        <div align="left">Enter username and password that will be used to logon on to your network.</div>
+        <div>  
+            <br>
+            <table>
+                <tbody><tr><td align="left">Username</td> </tr>
+                <tr><td align="left"><input id="username0" type="text" class="input_solid" maxlength="72" size="30"></td></tr>
+                <tr><td align="left">Password</td> </tr>
+                <tr><td align="left"><input id="password0" type="text" class="input_solid" maxlength="16" size="30"></td></tr>
+            </tbody></table>
+            <br>
+            <table width="100%">
+                <tbody><tr>
+                    <td width="50%"><input type="button" value="  OK  " class="button" onclick="$.colorbox.close(); vpn_connect_click(0, $(&#39;#username0&#39;).attr(&#39;value&#39;), $(&#39;#password0&#39;).attr(&#39;value&#39;));"> </td>
+                    <td width="50%"><input type="button" value="Cancel" class="button" onclick="$.colorbox.close();"> </td>
+                </tr>
+            </tbody></table>
+        </div>
+        <br>
+    </div>
+ </div>
+
+ <div id="inline_scenarioB" class="colorbox_dialog_blue">
+    <div class="block_title"><p align="center">Network Logon Credentials</p></div><br>
+    <div class="bGroup4">
+        <br>
+        <div align="left">Enter username and password that will be used to logon on to your network.</div>        
+        <div>  
+            <br>
+            <table>
+                <tbody><tr><td align="left">Username         (Permanently Stored)</td> </tr>
+                <tr><td align="left"><input id="username2" type="text" class="input_solid" maxlength="72" size="30" value="&lt;% getCredential(&#39;username&#39;); %&gt;" readonly=""></td></tr>
+                <tr><td align="left">Password</td> </tr>
+                <tr><td align="left"><input id="password2" type="text" class="input_solid" maxlength="16" size="30"></td></tr>
+            </tbody></table>
+            <br>
+            <table width="100%">
+                <tbody><tr>
+                    <td width="50%"><input type="button" value="  OK  " class="button" onclick="$.colorbox.close(); vpn_connect_click(1, $(&#39;#username2&#39;).attr(&#39;value&#39;), $(&#39;#password2&#39;).attr(&#39;value&#39;));"> </td>
+                    <td width="50%"><input type="button" value="Cancel" class="button" onclick="$.colorbox.close();"> </td>
+                </tr>
+            </tbody></table>
+        </div>
+        <br>
+    </div>
+ </div>
+
+ <div id="inline_saveUsername" class="colorbox_dialog_blue">
+    <div class="block_title"><p align="center">Network Logon Credentials</p></div><br>
+    <div class="bGroup4">
+        <br>
+        <div align="left">Enter username and password that will be used to logon on to your network.</div>
+        <div>  
+            <br>
+            <table>
+                <tbody><tr><td align="left">Username         (Permanently Stored)</td> </tr>
+                <tr><td align="left"><input id="username1" type="text" class="input_solid" maxlength="72" size="30"></td></tr>
+            </tbody></table>
+            <br>
+            <table width="100%">
+                <tbody><tr>
+                    <td width="50%"><input type="button" value="  OK  " class="button" onclick="save_credential(1, $(&#39;#username1&#39;).attr(&#39;value&#39;), 0);"> </td>
+                    <td width="50%"><input type="button" value="Cancel" class="button" onclick="$.colorbox.close();"> </td>
+                </tr>
+            </tbody></table>
+        </div>
+        <br>
+    </div>
+ </div>
+  
+ <div id="inline_saveUsernamePassword" class="colorbox_dialog_blue">
+    <div class="block_title"><p align="center">Network Logon Credentials</p></div><br>
+    <div class="bGroup4">
+        <br>
+        <div align="left">Enter username and password that will be used to logon on to your network.</div>        
+        <div>  
+            <br>
+            <table>
+                <tbody><tr><td align="left">Username         (Permanently Stored)</td> </tr>
+                <tr><td align="left"><input id="username3" type="text" class="input_solid" maxlength="72" size="30"></td></tr>
+                <tr><td align="left">Password         (Permanently Stored)</td> </tr>
+                <tr><td align="left"><input id="password3" type="text" class="input_solid" maxlength="16" size="30"></td></tr>
+            </tbody></table>
+            <br>
+            <table width="100%">
+                <tbody><tr>
+                    <td width="50%"><input type="button" value="  OK  " class="button" onclick="$.colorbox.close(); save_credential(2, $(&#39;#username3&#39;).attr(&#39;value&#39;), $(&#39;#password3&#39;).attr(&#39;value&#39;)); "> </td>
+                    <td width="50%"><input type="button" value="Cancel" class="button" onclick="$.colorbox.close();"> </td>
+                </tr>
+            </tbody></table>
+        </div>
+        <br>
+    </div>
+ </div>
+    
+<div id="inline_nmea" class="colorbox_dialog_blue">
+        <div class="block_title">Information</div><br>
+        <div>
+            <p align="left">
+                Please wait until NMEA is enabled. <br>
+                Message screen will close automatically after NMEA is enabled.<br><br>
+                <font style="font-weight:bold"> NOTE: </font><br>
+                If the NMEA driver does not automatically install, please proceed to the <font style="font-weight:bold">FranklinCD</font> drive under My Computer for manual install.
+            </p>
+            <p align="center">
+            <input type="button" value="Cancel" class="button" onclick="$.colorbox.close();">
+            <!--input type="button" value="OK" class="button" onclick="$.colorbox.close(); nmea_enable();"/>&nbsp; &nbsp; <input type="button" value="Cancel" class="button" onclick="nmea_cancel();$.colorbox.close();"/-->
+            </p>
+        </div>
+</div>
+
+<div id="inline_failnmea" class="colorbox_dialog_blue">
+    <p>Fail to <span id="nmeaStatus"></span> NMEA<br></p>
+    <p align="center">
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close();">
+    </p>
+</div>
+
+<div id="inline_waitnmea" class="colorbox_dialog_blue">
+    <p>Please wait until NMEA is <span id="nmeaWait"></span>. <br>
+        This message will close automatically.</p>
+</div>
+
+<div id="inline_nmea_os" class="colorbox_dialog_blue">
+    <p>NMEA is only supported on Windows.
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close();">
+    </p>
+</div>
+
+<div id="inline_datalink_enable_reload" class="colorbox_dialog_blue">
+    Datalink will be enabled and webpage will be reload !!<br>
+    Continue?<br>
+    <p align="center">
+        <input type="button" value="Yes" class="button" onclick="$.colorbox.close(); datalink_enable(1);"> &nbsp; 
+        <input type="button" value="No" class="button" onclick="$.colorbox.close();">
+    </p>
+</div>
+
+<div id="inline_switching" class="colorbox_dialog_blue">
+    Please wait until switching is completed.<br>
+</div>
+
+<div id="inline_handover" class="colorbox_dialog_blue">
+    Handover to better service...<br>
+</div>
+
+<div id="inline_Battery_not_Enough" class="colorbox_dialog_blue">
+		<p lang="en">Battery level is low.<br>Please charge the battery more than 50% and try again.</p>
+    <p align="center">
+    	<input type="button" value="OK" class="button" onclick="$.colorbox.close()">
+    </p>
+</div>
+
+<div id="inline_new_software" class="colorbox_dialog_blue">
+    <p lang="en">SW update is available. Would you like to download now?</p>
+    <p align="center">
+    <input type="button" value="Yes" class="button" onclick="gAutoUpgradeObj.doBatteryCheck(); ">
+    &nbsp;&nbsp;&nbsp;
+    <input type="button" value="No" class="button" onclick="$.colorbox.close()">
+    </p>
+</div>
+
+<div id="inline_ippt_enable" class="colorbox_dialog_blue">
+    <p>Please wait until IPPT is enabled. <br>
+        This message will close automatically.</p>
+</div>
+
+<div id="inline_ippt_disable" class="colorbox_dialog_blue">
+    <p>Please wait until IPPT is disabled. <br>
+        This message will close automatically.</p>
+</div>
+
+<div id="inline_failippt" class="colorbox_dialog_blue">
+    <p>Fail to <span id="ipptStatus"></span> IPPT<br></p>
+    <p align="center">
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close();">
+    </p>
+</div>
+
+<div id="inline_ippt_warring" class="colorbox_dialog_blue">
+    <p>As IPPT is Enabled, your web connection will be lost for a few seconds.<br>
+    This message will close automatically.</p>
+</div>
+
+<div id="inline_datalink_disable_reload" class="colorbox_dialog_blue">
+    Datalink will be disabled and webpage will be reload !!<br>
+    Continue?<br>
+    <p align="center">
+        <input type="button" value="Yes" class="button" onclick="$.colorbox.close(); datalink_enable(0);"> &nbsp; 
+        <input type="button" value="No" class="button" onclick="$.colorbox.close();">
+    </p>
+</div>
+
+<div id="inline_disconnect_data_query" class="colorbox_dialog_blue">
+    <p>Currently data is connected, or 3G radio is off. <br>do you want to disconnect or turn 3G radio on and proceed?</p> 
+    <p align="center">
+        <input type="button" value="Yes" class="button" onclick="gCIOMA_Obj.checkBeforeCIOMAstart();"> &nbsp; 
+        <input type="button" value="No" class="button" onclick="$.colorbox.close();">
+    </p>
+</div>
+
+<div id="inline_apmode_enable" class="colorbox_dialog_blue">
+    <p>Airplane mode is enabled. <br>Please try again after unchecking "Enable Airplane Mode".</p>
+    <p align="center">
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close();">
+    </p>
+</div>
+
+<div id="inline_data_off" class="colorbox_dialog_blue">    
+    <p>Currently data is not connected. <br>Please try to connect the network!</p>
+    <p align="center">
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close();">
+    </p>
+</div>
+
+<div id="inline_data_disconnect_wait" class="colorbox_dialog_blue">
+    <p>Please wait ...</p><!--&nbsp<span id="waitDataDisconnectStr"></span></p>-->
+</div>
+
+<div id="inline_network_scanning_wait" class="colorbox_dialog_blue">
+    <p>Scanning for networks. Please wait...</p>
+</div>
+
+<div id="inline_domestic_roamguard" class="colorbox_dialog_blue">
+    <p align="left">You are about to establish a data connection on a roaming network within the U.S., Puerto Rico, and U.S. Virgin Islands. Roaming charges may apply per your service plan options. Certain data usage limits apply per your service plan agreement.</p> 
+    <p align="center">
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close(); roam_start(0); select_network_roam_3g();"> &nbsp; 
+        <input type="button" value="Cancel" class="button" onclick="$.colorbox.close(); roam_start(1);">
+    </p>
+</div>
+
+<div id="inline_international_roamguard" class="colorbox_dialog_blue">
+    <p align="left">You are about to establish a data connection on an internatinal roaming network outside the U.S., Puerto Rico, and U.S. Virgin Islands. International roaming charges apply per your service plan options. Certain data usage limits apply per your service plan agreement.</p> 
+    <p align="center">
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close(); roam_start(0); select_network_roam_3g();"> &nbsp; 
+        <input type="button" value="Cancel" class="button" onclick="$.colorbox.close(); roam_start(1);">
+    </p>
+</div>
+
+<div id="inline_international_warning" class="colorbox_dialog_blue">
+    <p align="left">You currently do not have International Roaming enabled. Please make sure you have International setup on your account and the Hostless CM.</p>
+    <p align="center"><input type="button" value="OK" class="button" onclick="$.colorbox.close()"></p>
+</div>
+
+<div id="inline_call_fail_1" class="colorbox_dialog_blue">
+    <p align="left">There was a problem trying to connect. Please retry. If the problem persists, contact Customer Support Center.<br>
+    <span id="mip_error1"></span>
+    </p>
+    <p align="center">
+        <input type="button" value="Retry" class="button" onclick="gAlertShown = 0; if(mAutoChangeTimer){clearTimeout(mAutoChangeTimer);}; if(temp_AutoConn_mode==1){gConnObj.doUpdateAutoconn(&#39;1&#39;, &#39;0&#39;);}; select_network_switch();$.colorbox.close()"> &nbsp; 
+        <input type="button" value="Dismiss" class="button" onclick="gAlertShown = 0; if(mAutoChangeTimer){clearTimeout(mAutoChangeTimer);}; $.colorbox.close()">
+    </p>
+</div>
+
+<div id="inline_call_fail_1_cidc" class="colorbox_dialog_blue">
+    <p align="left">There was a problem trying to connect. Please retry. If the problem persists, contact Customer Support Center.<br>
+    <span id="mip_error1_cidc"></span>
+    </p>
+    <p align="center">
+        <input type="button" value="Update profile" class="button" onclick="gAlertShown = 0; $.colorbox.close(); cidc_start();"> &nbsp; 
+        <input type="button" value="Dismiss" class="button" onclick="gAlertShown = 0; $.colorbox.close()">
+    </p>
+</div>
+
+<div id="inline_call_fail_2" class="colorbox_dialog_blue">
+    <p align="left">There was a problem trying to connect to the network. <br> 
+        If you have an active device account, please retry. If this is a recycled device, has previously been activated, or used with a Day Pass, press Reset. If the problem persists, contact Customer Support Center.<br>
+        <span id="mip_error2"></span>
+        </p>
+    <p align="center">
+        <input type="button" value="Retry" class="button" onclick="gAlertShown = 0; if(mAutoChangeTimer){clearTimeout(mAutoChangeTimer);}; if(temp_AutoConn_mode==1){gConnObj.doUpdateAutoconn(&#39;1&#39;, &#39;0&#39;);}; select_network_switch();$.colorbox.close()"> &nbsp; 
+        <input type="button" value="Reset" class="button" onclick="gAlertShown = 0; gRefurObj.doRefurbishConfirm()"> &nbsp; 
+        <input type="button" value="Dismiss" class="button" onclick="gAlertShown = 0; if(mAutoChangeTimer){clearTimeout(mAutoChangeTimer);}; $.colorbox.close()">
+    </p>
+</div>
+
+<div id="inline_call_fail_2_cidc" class="colorbox_dialog_blue">
+    <p align="left">There was a problem trying to connect to the network. <br> 
+        If you have an active device account, please retry. If this is a recycled device, has previously been activated, or used with a Day Pass, press Reset. If the problem persists, contact Customer Support Center.<br>
+        <span id="mip_error2_cidc"></span>
+        </p>
+    <p align="center">
+        <input type="button" value="Update profile" class="button" onclick="$.colorbox.close(); gAlertShown = 0; cidc_start();"> &nbsp; 
+        <input type="button" value="Reset" class="button" onclick="gAlertShown = 0; gRefurObj.doRefurbishConfirm()"> &nbsp; 
+        <input type="button" value="Dismiss" class="button" onclick="gAlertShown = 0; $.colorbox.close()">
+    </p>
+</div>
+
+<div id="inline_admin_required" class="colorbox_dialog_blue">
+    <p align="center" lang="en">Administrator Login Required</p>
+    <p align="center"><input lang="en" type="button" value="OK" class="button" onclick="$.colorbox.close();"></p>
+</div>
+<div id="inline_factoryconf" class="colorbox_dialog_blue">
+    <p lang="en">This operation will restore all settings back to factory default, continue?</p>
+    <p align="center">
+        <input type="button" value="Yes" class="button" onclick="gRefurObj.doRefurbish()"> &nbsp; 
+        <input type="button" value="No" class="button" onclick="$.colorbox.close()">
+    </p>
+</div>
+<script>
+function checkMSLLogin()
+{
+        //alert(doc.E("msl_login").value);
+        if(doc.E("msl_login").value.length == 0)
+        {
+            //alert("Error : MSL length is 0 !\nTry it again!");
+            //top.showDialogEx("inline_msl_err_msgbox", "60%", "auto");
+        }
+        else
+        {
+            $.colorbox.close();
+            ifr.document.forms['MSL_Login_form']._msl_id_passwd.value = doc.E("msl_login").value;
+            ifr.document.forms['MSL_Login_form'].submit();
+            doc.E("msl_login").value = "";
+        }
+}
+</script>
+<div id="inline_msllogin" class="colorbox_dialog_blue">
+<p lang="en" align="center">MSL code required</p>
+<p align="center"><input id="msl_login" type="password" class="input_solid" size="20" maxlength="6" onkeydown="javascript:if (event.keyCode == 13) {checkMSLLogin(); return false;}"></p>
+<p align="center"><input lang="en" type="button" value="OK" class="button" onclick=" $.colorbox.close();checkMSLLogin(); ">&nbsp;&nbsp;&nbsp;&nbsp;<input lang="en" type="button" value="Cancel" class="button" onclick="this_temp = null; $.colorbox.close();"></p>
+</div>
+<div id="inline_msl_err_msgbox" class="colorbox_dialog_blue">
+<p lang="en" align="center">Sorry, the MSL is incorrect.<br>Please try again.</p>
+<p align="center"><input lang="en" type="button" value="OK" class="button" onclick="url_path = &#39;advsettings.asp&#39; + &#39;?WWW_SID=&#39; + sid; ifr.window.location = url_path;$.colorbox.close();"></p>
+</div>
+<div lang="en" id="inline_sysreload" class="colorbox_dialog_blue">
+    The device is now rebooting... <br>Reconnect to the WiFi hotspot and refresh your browser after the device reboots.
+</div>
+<div id="inline_sysreload_wifi" class="colorbox_dialog_blue">
+    The device is now rebooting... <br>
+	Reconnect to the WiFi hotspot and refresh your browser after the device reboots.
+</div>
+
+<div id="inline_dsa_program" class="colorbox_dialog_blue">
+    The DSA transaction has been completed successfully. <br><br>
+    The 3G device is now rebooting, <br>
+    You will be redirected back to the system after <span id="timeoutStr"></span>&nbsp;seconds.
+</div>
+
+<div id="inline_dsa_connecting" class="colorbox_dialog_blue">
+    Connecting to activation server...<br><br>
+    If you have connection issues, please hit refresh on your browser or return back to Web UI and try again. If your connection fails again, please call Customer Support Center.
+</div>
+
+<div id="inline_dsa_disconnected" class="colorbox_dialog_blue">
+    You have lost your connection to the network. Please retry to establish connectivity and continue with your activation.<br><br>
+    If your connection fails again, please call Customer Support Center.
+    <p align="center"><input type="button" value="OK" class="button" onclick="$.colorbox.close();"></p>
+</div>
+
+<div id="inline_restore" class="colorbox_dialog_blue">
+    The restore process has completed successfully.<br>
+    The device is now rebooting. <br>
+    You will be redirected momentarily.
+</div>
+
+<div id="inline_datalink_reboot" class="colorbox_dialog_blue">
+    Your device is now rebooting. <br>
+    You will be redirected momentarily.
+</div>
+
+<div id="inline_restore_wait" class="colorbox_dialog_blue">
+    <p>Please wait ...</p>
+</div>
+
+<div id="inline_manual_activate" class="colorbox_dialog_blue" align="center">
+	<p>Activation Information</p>
+	<div align="center"><textarea rows="12" cols="60" readonly="readonly" class="textbox_blue" style="height:240px" id="man_activate" value=""></textarea></div>
+</div>
+
+<div id="inline_otasp_notactivated" class="colorbox_dialog_blue">
+    Service is not activated<br>
+    <p align="center"><input type="button" value="OK" class="button" onclick="$.colorbox.close();"></p>
+</div>
+
+<div id="inline_otasp_activated" class="colorbox_dialog_blue">
+    Service is activated<br>
+    <p align="center"><input type="button" value="OK" class="button" onclick="$.colorbox.close();"></p>
+</div>
+
+<div id="inline_otasp_invalid_network" class="colorbox_dialog_blue">
+	<p align="left">Activation is not available in 4G LTE network.<br> 
+					If you want to activate the device, please change the connection mode to 3G Only!</p>
+	<p align="center"><input type="button" value="OK" class="button" onclick="$.colorbox.close()"></p>
+</div>
+
+<div id="inline_otasp_failed_network" class="colorbox_dialog_blue">
+		Network does not respond<br>
+	<p align="center"><input type="button" value="OK" class="button" onclick="$.colorbox.close()"></p>
+</div>
+
+<div id="inline_otasp_already_activated" class="colorbox_dialog_blue">
+		Service is already activated<br>
+	<p align="center"><input type="button" value="OK" class="button" onclick="$.colorbox.close()"></p>
+</div>
+
+<div id="inline_otasp_not_completed" class="colorbox_dialog_blue">
+		Activation is not completed<br>
+	<p align="center"><input type="button" value="OK" class="button" onclick="$.colorbox.close()"></p>
+</div>
+
+<div id="inline_passwd_empty" class="colorbox_dialog_blue">
+    <br>
+    Error : Password length is 0 ! <br>
+    Try it again!
+    <p align="center"><input type="button" value="OK" class="button" onclick="$.colorbox.close();"></p>
+</div>
+
+<div id="inline_wrong_pincode" class="colorbox_dialog_blue">
+    <p>Sorry, the PIN code is incorrect.<br>Please try again.</p>
+    <p align="center">
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close()">
+    </p>
+</div>
+
+<div id="inline_wrong_pincode2" class="colorbox_dialog">
+    <p>Sorry, PIN retries is exceeded or incorrect<br>Please try again.</p>
+    <p align="center">
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close()">
+    </p>
+</div>
+
+<div id="inline_network_searching" class="colorbox_dialog_blue">
+    <p lang="en">Searching...</p>
+    <p lang="en">This may take a few moments.</p>
+</div>
+    
+<div id="inline_network_select_umts" class="colorbox_dialog_blue">
+    <p lang="en">Connection Options will change to '3G Only' mode.</p>
+    <p align="center">
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close()">
+    </p>
+</div>
+
+<div id="inline_network_select_gsm" class="colorbox_dialog_blue">
+    <p lang="en">Connection Options will change to '2G Only' mode.</p>
+    <p align="center">
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close()">
+    </p>
+</div>
+
+<div id="inline_network_select_lte" class="colorbox_dialog_blue">
+    <p lang="en">Connection Options will change to '4G LTE Only' mode.</p>
+    <p align="center">
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close()">
+    </p>
+</div>
+
+<div id="inline_data_on" class="colorbox_dialog_blue">    
+    <p>Currently data is connected. <br>Please try to disconnect the network!</p>
+    <p align="center">
+        <input type="button" value="OK" class="button" onclick="$.colorbox.close();">
+    </p>
+</div>
+
+
+
+    </div>
+    <table height="100%" width="100%" id="maintbl" style="height: 771px;">
+        <tbody><tr height="90px"><td align="center" valign="bottom">
+            <div style="margin:0 0 0 0px">
+                <table width="900px" align="center" cellpadding="0" cellspacing="0" border="0">
+                    <tbody><tr height="45px">
+                        <td class="header_left" rowspan="2" valign="bottom">
+                            <div>
+                                <table width="220" align="center" cellpadding="0" cellspacing="0" border="0">
+                                    <tbody><tr><td>
+                                        <div id="logo" style="margin:0 0 0 15px">
+                                        <a href="http://www.smilecoms.com/">Smilecoms<span></span></a>
+                                        </div>
+                                    </td></tr>
+                                    <tr><td align="center" style="font-size:11pt; font-weight:bold" valign="bottom" lang="en">4G LTE Portable Wi-Fi Hotspot</td></tr>
+                                </tbody></table>
+                            </div>
+                        </td>
+                        <td>
+                        <div class="header_right">
+                            <div class="display-none">
+                                <div id="inline_logout" class="colorbox_dialog_blue">
+                                    <p lang="en">Would you like to log out now?</p>
+                                    <p align="center"><input lang="en" type="button" value="Yes" class="button" onclick="doLogout()"> &nbsp; <input lang="en" type="button" value="No" class="button" onclick="$.colorbox.close()"></p>
+                                </div>
+                            </div>
+
+                            <form id="logout_form" action="http://smile-admin/admin_logout.asp" method="post">                                
+                                <input type="hidden" name="WWW_SID" id="LOGOUT_SID">
+                            </form>
+                            
+                            <div style="height:45px;float:right" class="display-none">
+                                <div style="padding:18px 0px 0px 0px; font-weight:bold; font-size:10pt;" lang="en">
+                                    <select id="language" style="width:80px; height:20px; font-size:8pt;" onchange="changeLanguage()">
+                                    <option value="en">English</option>
+                                    <option value="es">Español</option>
+									<!--
+                                    <option value="fr">Francais</option>
+                                    <option value="ru">Русский</option>
+                                    <option value="pt">Portugues</option>
+                                    <option value="ko">한국어</option>
+									-->
+                                    </select>
+                                </div>
+                            </div>            
+
+                            <div id="logout_area" style="display:none; height:45px;float:right; padding:0px 5px 0px 0px;">
+                                <div style="padding:15px 0px 0px 302px">
+                                <table>
+                                    <tbody><tr>
+                                        <td>
+                                        <img id="logoutsms" name="logoutsms" style="display:none;" src="./4G LTE Portable Wi-Fi Hotspot_files/sms.png" width="19" height="15" border="0" onclick="gSMSNewMsgObj.doConfirmNewMsg();changePage(&#39;sms.asp&#39;, &#39;pg_sms&#39;); return false;">
+                                        </td>
+                                        <td>
+                                        <div style="padding:0px 0px 0px 0px; font-weight:bold; font-size:10pt; float:left;" lang="en">Administrator</div>
+                                        </td>
+                                        <td>
+                                        <div style="padding:0px 0px 0px 0px;float:left"></div>
+                                        </td>
+                                        <td>
+                                        <input lang="en" type="submit" value="Log Out" id="" onclick="doLogoutCfm(); return false;">
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                                </div>
+                            </div>            
+
+                            <div id="login_area" style="height: 45px; float: right;">
+                                <div style="padding:15px 0px 0px 302px">
+                                    <table>
+                                        <tbody><tr>
+                                            <td>
+                                            <img id="loginsms" name="loginsms" style="display:none;" src="./4G LTE Portable Wi-Fi Hotspot_files/sms.png" width="19" height="15" border="0" onclick="gSMSNewMsgObj.doConfirmNewMsg();changePage(&#39;sms.asp&#39;, &#39;pg_sms&#39;); return false;">
+                                            </td>
+                                            <td id="admin_title" lang="en" title="Default password: admin" align="right" style="font-weight:bold; font-size:10pt;">
+                                                <div lang="en">Administrator</div>
+                                            </td>
+                                            <td id="admin_input_title" lang="en" title="Default password: admin" style="width:90px;height:10px" background="./4G LTE Portable Wi-Fi Hotspot_files/shape_adimpasswordbox.png" align="left">
+                                                <input lang="en" id="login_dp" name="login_dp" type="text" value="Password" style="background-color:#f1f1f1;width:90px;border:0px;color:#777;font-size:8pt;" onfocus="pwdFocus()" maxlength="15" size="15">
+                                                <input lang="en" id="login" name="login" class="input_text" type="password" style="background-color:#f1f1f1;width:90px;border:0px;display:none;font-size:8pt;" onblur="pwdBlur()" maxlength="15" onkeydown="javascript:if (event.keyCode == 13) {checkAdminLogin(); return false;}">                         
+                                            </td>
+                                            <td>
+                                                <input lang="en" type="submit" value="OK" id="" onclick="checkAdminLogin()">
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <!--tr>
+                                            <td></td><td align="left" colspan="2"><div  lang='en' style="font-size:8pt;">(Default password: admin)</div></td>
+                                        </tr-->
+                                    </tbody></table>
+                                    <form id="Login_form" name="Login_form" action="http://smile-admin/admin_login.asp" method="post">
+                                        <input type="hidden" id="REDIRECT" name="REDIRECT" value="index.html">
+                                        <input type="hidden" id="REDIRECT_ERR" name="REDIRECT_ERR" value="index.html">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tbody><tr>
+                                                <td>
+                                                    <input type="hidden" id="_id_passwd" name="PASSWORD">
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        </td>
+                    </tr>
+                    <tr height="45px">     
+                        <td>
+                            <div class="header_right" id="top_menuList" align="left">
+                                <table border="0" cellspacing="0" cellpadding="0" valign="top">
+                                    <tbody><tr>
+                                        <!-- center menu -->
+                                        <td valign="bottom"><a href="http://smile-admin/#" onclick="changePage(&#39;status.asp&#39;, &#39;pg_status&#39;); return false;" id="pg_status">
+                                        <img border="0" id="top_menu0_off" style="width: 135px; height: 45px; display: none;" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_upstate_DeviceNetwork.png">
+                                        <img border="0" id="top_menu0_on" style="width: 135px; height: 45px;" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_downstate_DeviceNetwork.png"></a></td>                            
+                                        <!--    2012.07.16 added start by JC -->
+                                        <td valign="bottom"><a href="http://smile-admin/#" onclick="changePage(&#39;check_usage.asp&#39;, &#39;pg_checkusage&#39;); return false;" id="pg_checkusage">
+                                        <img border="0" id="top_menu1_off" style="width:135px;height:45px" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_upstate_CheckUsage.png">
+                                        <img border="0" id="top_menu1_on" style="display:none;width:135px;height:45px" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_downstate_CheckUsage.png"></a></td>
+                                        <td valign="bottom"><a href="http://smile-admin/#" onclick="changePage(&#39;settings_wifi.asp&#39;, &#39;pg_wifi&#39;); return false;" id="pg_wifi">
+                                        <img border="0" id="top_menu2_off" style="width:135px;height:45px" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_upstate_wifi.png">
+                                        <img border="0" id="top_menu2_on" style="display:none;width:135px;height:45px" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_downstate_wifi.png"></a></td>
+                                        <td valign="bottom"><a href="http://smile-admin/#" onclick="changePage(&#39;settings.asp&#39;, &#39;pg_settings&#39;); return false;" id="pg_settings">
+                                        <img border="0" id="top_menu3_off" style="width:135px;height:45px" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_upstate_Settings.png">
+                                        <img border="0" id="top_menu3_on" style="display:none;width:135px;height:45px" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_downstate_Settings.png"></a></td>
+                                        <td valign="bottom"><a href="http://smile-admin/#" onclick="changePage(&#39;help.htm&#39;, &#39;pg_help&#39;); return false;" id="pg_help">
+                                        <img border="0" id="top_menu4_off" style="width:135px;height:45px" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_upstate_Help.png">
+                                        <img border="0" id="top_menu4_on" style="display:none;width:135px;height:45px" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_downstate_help.png"></a></td>
+
+                                    </tr>
+                                </tbody></table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>            
+        </td></tr>
+        <tr height="20"><td align="center">
+            <table width="914px" height="20px" style="padding:0px 0px 0px 6px">
+                <tbody><tr><td class="gradientbar" align="center"></td></tr>
+            </tbody></table>
+        </td></tr>
+        <tr><td align="center" valign="top">
+            <table width="900px" height="630">
+                <tbody><tr><td class="content_menu content_inner" style="height:630px;">
+                    <div align="right">
+                        <!-- right menu-->
+                        <div id="connection_control">
+    <table width="220" border="0" cellspacing="0" cellpadding="0">
+        <tbody><tr>                 
+            <td width="28">
+                <div id="top_roaming" style="display:none"><center><a href="http://smile-admin/#" onclick="" id="btnRoam" class="roamBtn" title="Roaming"></a></center></div>
+            </td>            
+        </tr>
+    </tbody></table>
+    <table width="220" border="0" cellspacing="0" cellpadding="0">
+        <tbody><tr height="10" colspan="3"><td>&nbsp;</td></tr> 
+        <tr>
+            <td id="cm_box" height="100%" valign="center" align="center" colspan="4">
+
+            <!-- 4G
+            <div id="area4G">
+                <div id="left_signal4gStatus" class="signalStatus" align="center" ></div>
+                <div id="left_4gsignal" align="center" width="180">
+                    <table border="0" cellspacing="0" cellpadding="1">
+                        <tr>
+                            <td valign="bottom" >
+                                <img border="0" id="signalbar4g0_on" src="img/shape_signal_0bar.png"  style="display:none">
+                                <img border="0" id="signalbar4g1_on" src="img/shape_signal_1bar.png"  style="display:none">
+                                <img border="0" id="signalbar4g2_on" src="img/shape_signal_2bar.png"  style="display:none">
+                                <img border="0" id="signalbar4g3_on" src="img/shape_signal_3bar.png"  style="display:none">
+                                <img border="0" id="signalbar4g4_on" src="img/shape_signal_4bar.png"  style="display:none">
+                                <img border="0" id="signalbar4g5_on" src="img/shape_signal_5bar.png"  style="display:none">
+                                <img border="0" id="signalbar4g6_on" src="img/shape_signal_6bar.png"  style="display:none">
+                            </td>
+                        </tr>
+                    </table>
+                </div>        
+                <div id="left_4groamstatus" class="connectTimer" align="center"></div>
+                <div id="left_4gconnTmr" class="connectTimer"></div>
+                <div id="left_4gbutton">
+                    <a href="#" onclick="select_network_current('4g');return false;" id="btn4gConn" class="connBtn_active"><img border="0" id="connectbtn4g_activate" src="img/shape_btn_activate.png"  style="display:none"><img border="0" id="connectbtn4g_no_activate" src="img/shape_btn_not_activate.png"  style="display:none"><img border="0" id="connectbtn4g_connect" src="img/shape_btn_connect.png"  style="display:none"><img border="0" id="connectbtn4g_no_connect" src="img/shape_btn_connect_disable.png"  style="display:none"><img border="0" id="connectbtn4g_cancel" src="img/shape_btn_connect_cancel.png"  style="display:none"><img border="0" id="connectbtn4g_disconnect" src="img/shape_btn_disconnect.png"  style="display:none"><img border="0" id="connectbtn4g_disable" src="img/shape_btn_4Gdisabled.png"  style="display:none"><img border="0" id="connectbtn4g_nosignal" src="img/shape_btn_nosignal.png"  style="display:none"><img border="0" id="connectbtn4g_airplane" src="img/shape_btn_airplane.png"  style="display:none"></a>
+                </div>    
+            </div>
+            4G END-->
+
+            <div id="area3G" style="display: none;">
+                <div lang="en" id="left_signal3gStatus" class="signalStatus" align="center" title="Signal: 0">3G Unavailable</div>
+                <div lang="en" id="left_3gsignal" align="center" width="180">
+                    <table border="0" cellspacing="0" cellpadding="1">
+                        <tbody><tr>
+                            <td valign="bottom">
+                                <img border="0" id="signalbar3g0_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_0bar.png" style="">
+                                <img border="0" id="signalbar3g1_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_1bar.png" style="display:none">
+                                <img border="0" id="signalbar3g2_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_2bar.png" style="display:none">
+                                <img border="0" id="signalbar3g3_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_3bar.png" style="display:none">
+                                <img border="0" id="signalbar3g4_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_4bar.png" style="display:none">
+                                <img border="0" id="signalbar3g5_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_5bar.png" style="display:none">
+                                <img border="0" id="signalbar3g6_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_6bar.png" style="display:none">
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>        
+                <div id="left_3groamstatus" class="connectTimer" align="center" style="display: none;"></div>
+                <div id="left_3gconnTmr" class="connectTimer">00:00:00</div>
+                <div id="left_3gbutton">
+                    <a href="http://smile-admin/#" onclick="select_network_current(&#39;3g&#39;);return false;" id="btn3gConn" class="connBtn_disable">
+                        <img border="0" id="connectbtn3g_activate" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_activate.png">
+                        <img border="0" id="connectbtn3g_no_activate" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_not_activate.png">
+                        <img border="0" id="connectbtn3g_connect" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_connect.png">
+                        <img border="0" id="connectbtn3g_no_connect" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_connect_disable.png">
+                        <img border="0" id="connectbtn3g_cancel" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_connect_cancel.png">
+                        <img border="0" id="connectbtn3g_disconnect" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_disconnect.png">
+                        <img border="0" id="connectbtn3g_nosignal" style="display: inline;" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_nosignal.png">
+                        <img border="0" id="connectbtn3g_airplane" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_airplane.png">
+                    </a>
+                </div>    
+            </div>
+
+            <div id="areaLTE" style="">
+                <div lang="en" id="left_signalLTEStatus" class="signalStatus" align="center" title="Signal: 1">4G LTE Network</div>
+                <div lang="en" id="left_LTEsignal" align="center" width="180">
+                    <table border="0" cellspacing="0" cellpadding="1">
+                        <tbody><tr>
+                            <td valign="bottom">
+                                <img border="0" id="signalbarLTE0_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_0bar.png" style="display:none">
+                                <img border="0" id="signalbarLTE1_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_1bar.png" style="">
+                                <img border="0" id="signalbarLTE2_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_2bar.png" style="display:none">
+                                <img border="0" id="signalbarLTE3_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_3bar.png" style="display:none">
+                                <img border="0" id="signalbarLTE4_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_4bar.png" style="display:none">
+                                <img border="0" id="signalbarLTE5_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_5bar.png" style="display:none">
+                                <img border="0" id="signalbarLTE6_on" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_signal_6bar.png" style="display:none">
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>        
+                <div id="left_LTEroamstatus" class="connectTimer" align="center" style="display: none;"></div>
+                <div id="left_LTEconnTmr" class="connectTimer">02:44:02</div>
+                    <div id="left_LTEbutton">
+                        <a href="http://smile-admin/#" onclick="select_network_current(&#39;LTE&#39;);return false;" id="btnLTEConn" class="connBtn_active">
+                            <img border="0" id="connectbtnLTE_activate" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_activate.png">
+                            <img border="0" id="connectbtnLTE_no_activate" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_not_activate.png">
+                            <img border="0" id="connectbtnLTE_connect" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_connect.png">
+                            <img border="0" id="connectbtnLTE_no_connect" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_connect_disable.png">
+                            <img border="0" id="connectbtnLTE_cancel" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_connect_cancel.png">
+                            <img border="0" id="connectbtnLTE_disconnect" style="display: inline;" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_disconnect.png">
+                            <img border="0" id="connectbtnLTE_nosignal" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_nosignal.png">
+                            <img border="0" id="connectbtnLTE_airplane" style="display:none" src="./4G LTE Portable Wi-Fi Hotspot_files/shape_btn_airplane.png">
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr height="3"><td>&nbsp; </td></tr>
+<!-- 
+        <tr height="1" >
+            <td align="center" width="33"  ></td>
+            <td align="center" width="130"  background="img/dot-green.gif"></td>
+            <td align="center" width="50"  background="img/dot-green.gif"></td>
+            <td align="center" width="33"  ></td>
+        </tr>
+        <tr height="3" ><td>&nbsp;</td></tr>
+-->
+    </tbody></table>
+
+   <!-- 2012.07.16 by JC 
+    <div class="fieldColumn" >
+        <div id="autoConnect1" class="fieldCMTitle" onclick="">
+            <table width="200" align="center" >
+                <tr>
+                    <td width="20"><image id="open_icon" class="open_icon" name="open_icon" src="img/open_cm.png" border="0"/></td>
+                    <td><div id="cm_view" name="cm_view" align="left" >Hide Networks</div></td>
+                </tr>
+            </table>
+        </div>
+        <table width="180" border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr>
+                <td id="small_net_status" align="center" colspan="4"></td>
+            </tr>
+            <tr> 
+                <td height="100%" valign="center" align="left" colspan="1" width="5"></td>   
+                <td height="100%" valign="center" align="left" colspan="1">
+                <label><input type="radio" id="switch_cm_lte" name="switch_cm" value="0" onclick="click_switch_mode_only('LTE');" checked> 4G LTE</label>
+                </td>
+                <td height="100%" valign="center" align="left" colspan="2"> 
+                    <img border="0" id="signalbarLTE0_small_on" src="img/shape_signal_0bar_small.png"  style="display:none">
+                    <img border="0" id="signalbarLTE1_small_on" src="img/shape_signal_1bar_small.png"  style="display:none">
+                    <img border="0" id="signalbarLTE2_small_on" src="img/shape_signal_2bar_small.png"  style="display:none">
+                    <img border="0" id="signalbarLTE3_small_on" src="img/shape_signal_3bar_small.png"  style="display:none">
+                    <img border="0" id="signalbarLTE4_small_on" src="img/shape_signal_4bar_small.png"  style="display:none">
+                    <img border="0" id="signalbarLTE5_small_on" src="img/shape_signal_5bar_small.png"  style="display:none">
+                    <img border="0" id="signalbarLTE6_small_on" src="img/shape_signal_6bar_small.png"  style="display:none">
+                </td>
+            </tr>
+            <tr> 
+                <td height="100%" valign="center" align="left" colspan="1"></td>
+                <td height="100%" valign="center" align="left" colspan="1"> 
+                <label><input type="radio" id="switch_cm_3g" name="switch_cm" value="2" onclick="click_switch_mode_only('3g');" > 3G</label>
+                </td>
+                <td height="100%" valign="center" align="left" colspan="2">
+                    <img border="0" id="signalbar3g0_small_on" src="img/shape_signal_0bar_small.png"  style="display:none">
+                    <img border="0" id="signalbar3g1_small_on" src="img/shape_signal_1bar_small.png"  style="display:none">
+                    <img border="0" id="signalbar3g2_small_on" src="img/shape_signal_2bar_small.png"  style="display:none">
+                    <img border="0" id="signalbar3g3_small_on" src="img/shape_signal_3bar_small.png"  style="display:none">
+                    <img border="0" id="signalbar3g4_small_on" src="img/shape_signal_4bar_small.png"  style="display:none">
+                    <img border="0" id="signalbar3g5_small_on" src="img/shape_signal_5bar_small.png"  style="display:none">
+                    <img border="0" id="signalbar3g6_small_on" src="img/shape_signal_6bar_small.png"  style="display:none">
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center" colspan="4">    
+                    <a href="#" onclick="select_network_switch();return false;" id="btnSwitch" class="connBtn_active"><img border="0" id="connectbtnSwitch_connect" src="img/shape_btn_connect.png"  style="margin:0px; display:none"><img border="0" id="connectbtnSwitch_no_connect" src="img/shape_btn_connect_disable.png"  style="margin:0px; display:none"><img border="0" id="connectbtnSwitch_switch" src="img/shape_btn_switch.png"  style="margin:0px; display:none"><img border="0" id="connectbtnSwitch_no_activate" src="img/shape_btn_not_activate.png"  style="margin:0px; display:none"><img border="0" id="connectbtnSwitch_airplane" src="img/shape_btn_airplane.png"  style="margin:0px; display:none"></a>
+                </td>
+            </tr>    
+        </table>
+    </div>
+ -->
+</div>
+
+
+                    </div>
+                    <div class="display-none">
+                        <div id="inline_omadmStatus" class="colorbox_dialog_blue"> </div>
+                    </div>
+
+                    <div class="display-none">
+                        <div id="inline_pin_code_lock" class="colorbox_dialog_blue">
+                        	<br><div>Enter PIN code</div><br>
+                            <div align="center">
+                                <input id="main_pin_code" type="password" class="input_solid" size="16" maxlength="16" onkeydown="javascript:if (event.keyCode == 13) {gUsimPinCodeObj.doQueryPinCode();}"><br>
+                                <div id="main_pin_code_cnt"></div> 
+                                <input type="button" value="OK" class="button" onclick="gUsimPinCodeObj.doQueryPinCode()"> &nbsp; 
+                                <input type="button" value="Cancel" class="button" onclick="$.colorbox.close(); gUsimPinCodeObj.doBlock()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="display-none">
+                        <div id="inline_puk_code_lock" class="colorbox_dialog_blue">
+                            <div align="center">
+                                <table align="center">
+                                    <tbody><tr><td align="left">Enter PUK code</td><td><input id="main_puk_code" type="password" class="input_solid" size="16" maxlength="16">
+                                    </td></tr>
+                                    <tr><td align="left">Enter New PIN code</td><td><input id="main_puk_new_pin_code" type="password" class="input_solid" size="16" maxlength="16">
+                                    </td></tr>
+                                </tbody></table>
+                            </div>
+                            <div id="main_puk_code_cnt"></div> 
+                            <input type="button" value="OK" class="button" onclick="gUsimPinCodeObj.doQueryPukCode()"> &nbsp; 
+                            <input type="button" value="Cancel" class="button" onclick="$.colorbox.close(); gUsimPinCodeObj.doBlock()">
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="display-none">
+                        <div id="inline_new_pin_code" class="colorbox_dialog_blue">
+                            <p>Enter New PIN code</p> 
+                            <p align="center">
+                                <input id="main_new_pin_code" type="password" class="input_solid" size="16" maxlength="16"><br>
+                                <input id="cfm_new_pin_code" type="password" class="input_solid" size="16" maxlength="16"><br>
+                                <input type="button" value="OK" class="button" onclick="gUsimPinCodeObj.doQueryNewPinCode()"> &nbsp; 
+                                <input type="button" value="Cancel" class="button" onclick="$.colorbox.close();">
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="display-none">
+                        <div id="inline_cifumo_useraction" class="colorbox_dialog_blue">
+                            <p>Do you want to install Firmware now?</p> 
+                            <p align="center">
+                                <input type="button" value="Yes" class="button" onclick="$.colorbox.close(); gOMAStatusObj.doOMADMUserAction(2,1)"> &nbsp; 
+                                <input type="button" value="No" class="button" onclick="$.colorbox.close(); gOMAStatusObj.doOMADMUserAction(2,2)">
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="display-none">
+                        <div id="inline_hfa_useraction" class="colorbox_dialog_blue">
+                            <p>Do you want to install Firmware now?</p> 
+                            <p align="center">
+                                <input type="button" value="Yes" class="button" onclick="$.colorbox.close(); gOMAStatusObj.doOMADMUserAction(3,1)"> &nbsp; 
+                                <input type="button" value="No" class="button" onclick="$.colorbox.close(); gOMAStatusObj.doOMADMUserAction(3,2)">
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="display-none">
+                        <div id="inline_hfa_dc_confirm" class="colorbox_dialog_blue">
+                            <p>Activation in progress. Press OK to continue.</p> 
+                            <p align="center">
+                                <input type="button" value="OK" class="button" onclick="$.colorbox.close();">
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="display-none">
+                        <div id="inline_hfa_prl_confirm" class="colorbox_dialog_blue">
+                            <p>PRL has been updated. Press OK to continue.</p> 
+                            <p align="center">
+                                <input type="button" value="OK" class="button" onclick="$.colorbox.close();"> 
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="display-none">
+                        <div id="inline_nifumo_useraction" class="colorbox_dialog_blue">
+                            <p>Do you want to install Firmware now?</p> 
+                            <p align="center">
+                                <input type="button" value="Yes" class="button" onclick="$.colorbox.close(); gOMAStatusObj.doOMADMUserAction(6,1)"> &nbsp; 
+                                <input type="button" value="No" class="button" onclick="$.colorbox.close(); gOMAStatusObj.doOMADMUserAction(6,2)">
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="display-none">
+                        <div id="activation_success" class="colorbox_dialog_blue">
+                            <p>Device has been activated! Press OK to continue.</p> 
+                            <p align="center">
+                                <input type="button" value="OK" class="button" onclick="gOMAStatusObj.doClearTimeoutNetscan(); gOMAStatusObj.showNetworkScanningWaitDlg(); gOMAStatusObj.doClearTimeoutOkClose();gOMAStatusObj.doClearTimeoutNetscan();">
+                            </p>
+                        </div>
+                    </div>
+
+                    <div align="center">
+                        <div style="margin: 7px 1px;">
+                            <div id="omadmStatusDiv" style="display:inline">
+                                <div class="omadmStatus" align="center">
+                                    <marquee id="omadmStatus" behavior="alternate" style="width:200px"></marquee>
+                                </div>
+                            </div>
+                            <div id="FUMOProgessDiv" style="display:none">
+                                <div id="fumoDownloadStatus" class="omadmStatus" align="center"></div>
+                            </div>
+                            <div id="progressbarDiv" style="display:none">
+                                <div id="fumoprogressbar" class="progressbar"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div align="center">
+                        <div id="omadmCancelBtn0" style="display:none">
+                            <input name="Cancel" id="cancelbtn0" type="button" value="Cancel" class="btn" onclick="gOMAStatusObj.SetOMACancel();gOMAStatusObj.doOMADMUserAction(0,2);">
+                        </div>
+                    </div>
+
+                    <div align="center">
+                        <div id="omadmCancelBtn1" style="display:none">
+                            <input name="Cancel" id="cancelbtn1" type="button" value="Cancel" class="btn" onclick="gOMAStatusObj.SetOMACancel();gOMAStatusObj.doOMADMUserAction(1,2);">
+                        </div>
+                    </div>
+
+                    <div align="center">
+                        <div id="omadmCancelBtn2" align="center" style="display:none">
+                            <input name="Cancel" id="cancelbtn2" type="button" value="Cancel" class="btn" onclick="gOMAStatusObj.SetOMACancel();gOMAStatusObj.doOMADMUserAction(2,2);">
+                        </div>
+                    </div>
+
+                    <div align="center">
+                        <div id="omadmCancelBtn3" align="center" style="display:none">
+                            <input name="Cancel" id="cancelbtn3" type="button" value="Cancel" class="btn" onclick="gOMAStatusObj.SetOMACancel();gOMAStatusObj.doOMADMUserAction(3,2);">
+                        </div>
+                    </div>
+
+                    <div align="center">
+                        <div id="omadmCancelBtn4" align="center" style="display:none">
+                            <input name="Cancel" id="cancelbtn4" type="button" value="Cancel" class="btn" onclick="gOMAStatusObj.SetOMACancel();gOMAStatusObj.doOMADMUserAction(4,2);">
+                        </div>
+                    </div>
+
+
+                    <div align="center">
+                        <div id="omadmCancelBtn5" align="center" style="display:none">
+                            <input name="Cancel" id="cancelbtn5" type="button" value="Cancel" class="btn" onclick="gOMAStatusObj.SetOMACancel();gOMAStatusObj.doOMADMUserAction(5,2);">
+                        </div>
+                    </div>
+
+
+                    <div align="center">
+                        <div id="omadmCancelBtn6" align="center" style="display:none">
+                            <input name="Cancel" id="cancelbtn6" type="button" value="Cancel" class="btn" onclick="gOMAStatusObj.SetOMACancel();gOMAStatusObj.doOMADMUserAction(6,2);">
+                        </div>
+                    </div>
+                </td>
+<!--                
+                <td class="content_sep"></td>
+-->                
+                <td class="content_body" align="left" valign="top">
+                    <div id="right_urlbody" class="display-none" style="display: block;">                     
+                        <iframe name="ifr" id="ifr" marginheight="0" marginwidth="0" frameborder="0" width="675" height="630" allowtransparency="true" style="border:none;overfllow:hidden; left:0px; top: 0px;" src="./4G LTE Portable Wi-Fi Hotspot_files/saved_resource.html">
+                        </iframe>
+                    </div>   
+                </td></tr>
+            </tbody></table>
+        </td></tr>
+        <tr height="20"><td></td></tr>
+    </tbody></table>
+
+
+</body></html>

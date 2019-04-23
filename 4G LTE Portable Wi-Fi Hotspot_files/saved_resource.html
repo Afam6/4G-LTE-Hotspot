@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)http://smile-admin/status.asp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link href="./sprint4G.css" rel="stylesheet" type="text/css">
+<link href="./colorbox.css" rel="stylesheet" type="text/css">
+
+<title>4G LTE Smart USB Modem</title>
+<script type="text/javascript" src="./common.js"></script>
+<script type="text/javascript" src="./func.js"></script>
+<script type="text/javascript" src="./jquery-1.4.3.min.js"></script>
+<script type="text/JavaScript" src="./rpc.js"></script>
+<script type="text/javascript" src="./table.js"></script>
+<script type="text/javascript" src="./verify.js"></script>
+<script type="text/javascript" src="./jquery.colorbox-min.js"></script>
+<script type="text/javascript" src="./jquery.cookie.js"></script>
+<script type="text/javascript" src="./jquery-lang.js" charset="utf-8"></script>
+<script type="text/javascript" src="./ko.js" charset="euc-kr"></script>
+<script type="text/javascript" src="./es.js" charset="utf-8"></script>
+<script type="text/javascript" src="./pt.js" charset="utf-8"></script>
+<script type="text/javascript" src="./fr.js" charset="utf-8"></script>
+<script type="text/javascript" src="./ru.js" charset="utf-8"></script>
+<script type="text/javascript">
+<!--
+var sid = '';
+$.ajaxSetup({cache: false }); 
+-->
+</script>
+
+
+<script type="text/javascript">
+<!--
+
+
+var gServ3GObj = null;
+var gServLTEObj = null;
+var gServGSMObj = null;
+
+/* -------------------------- */
+/*  LTE Services function      */
+/* -------------------------- */
+ServLTEObj = function (time) {
+    var _this_ = this;
+    var mQueryRpc = new RPC("servlte_query");;
+    var mInitQueryRpc = new RPC("init_servlte_query");
+    this.mQueryTimer = null;
+    this.mDefRefreshTime = time;
+    this.mRefreshTime = 1;
+    var IsInitialized = 0;
+
+    this.doRefresh = function (obj) {
+        if (obj.mQueryTimer) {clearTimeout(obj.mQueryTimer);}
+        obj.mQueryTimer = setTimeout(function() {obj.doUpdate();}, (obj.mRefreshTime * 1000));
+    }
+    
+    this.doUpdateCallBack = function (result, argv, error) {
+        if(result.length != 11 ){
+            _this_.doRefresh(_this_);
+            return;
+        }
+        var txt = window.lang.convert(result[0], top.default_lang);        
+        $("#lte_status").html(txt);
+        $("#lte_snr").html(result[1]);
+        $("#lte_rsrp").html(result[2]);
+        $("#lte_rsrq").html(result[3]);
+        $("#lte_plmn_id").html(result[4]);
+
+        txt = window.lang.convert(result[5], top.default_lang);        
+        $("#usim_state").html(txt);
+
+        txt = window.lang.convert(result[6], top.default_lang);        
+        $("#lte_technology").html(txt);
+
+        $("#lte_imsi").html(result[8]);
+        $("#lte_iccid").html(result[9]);
+
+        argv.doRefresh(argv);
+
+        if(IsInitialized==0){
+            argv.doInitialize();
+        }
+    }
+    
+    this.doUpdate = function(value) {
+        var options = {
+            successFn:_this_.doUpdateCallBack,
+            errorFn:function(textStatus) {_this_.doRefresh(_this_);},
+            timeout:5000,
+            argv:_this_
+        };
+            
+        mQueryRpc.reset();
+        mQueryRpc.addFunction("fti_ServLTEObj_update", "");
+        mQueryRpc.run(options);
+    }
+    
+    this.doInitializeCallBack = function (result, argv, error) { 
+        if(result.length != 4 ){
+            _this_.doInitialize();
+            return;
+        }
+        
+        $("#_fw_ver").html(result[0]);
+        $("#lte_imsi").html(result[1]);
+        $("#lte_iccid").html(result[2]);
+
+        if(result[0] != "N/A")
+            IsInitialized = 1;
+    }
+    
+    this.doInitialize = function() {
+        var options = {
+            successFn:_this_.doInitializeCallBack,
+            errorFn:function(textStatus) {_this_.doRefresh(_this_);},
+            timeout:5000,
+            argv:_this_
+        };
+        IsInitialized = 0;
+        mInitQueryRpc.reset();
+        mInitQueryRpc.addFunction("fti_ServLTEObj_init", ""); 
+        mInitQueryRpc.run(options);
+    }
+    this.setRefreshTime = function (value) {
+        if (value == "none") {
+            this.mRefreshTime = this.mDefRefreshTime;
+            if(IsInitialized == 0)
+            {
+                this.doInitialize();
+            }
+            this.doUpdate();
+        } else {
+            this.mRefreshTime = 30;
+        }
+    }
+//    this.doUpdate();
+};
+
+
+
+/* -------------------------- */
+/*  Network function          */
+/* -------------------------- */
+NetObj = function (time) {
+    var _this_ = this;
+    var mQueryRpc = new RPC("serv4g_query");
+    var mInitQueryRpc = new RPC("init_serv4g_query");
+    var mQueryTimer = null;
+    this.mDefRefreshTime = time;
+    this.mRefreshTime = 1;
+    var IsInitialized = 0;
+
+    this.doRefresh = function (obj) {
+        if (obj.mQueryTimer) {clearTimeout(obj.mQueryTimer);}
+        obj.mQueryTimer = setTimeout(function() {obj.doUpdate();}, (obj.mRefreshTime * 1000));
+    }
+    
+    this.doUpdateCallBack = function (result, argv, error) {
+        if(result.length != 9 ){
+            _this_.doRefresh(_this_);
+            return;
+        }
+        var idx = 0;
+        var wan_list = result[idx++].split("\n");
+        var txrx_list = result[idx++].split("\n");
+
+        $("#net_ip").html("--");
+        $("#net_gw").html("--");
+        $("#net_dns1").html("--");
+        $("#net_dns2").html("--");
+        $("#net_snd").html("--");
+        $("#net_rcv").html("--");
+        $("#net_total").html("--");
+        $("#net_snd_byte").html("");
+        $("#net_rcv_byte").html("");
+        $("#net_total_byte").html("");
+
+        //alert(result[0]);
+
+        for (var i=0 ; i<wan_list.length ; ++i) {
+            var wan = wan_list[i].split("\t");
+            
+            if (wan[2] == "o" && wan[3] == "o") {
+                var dns_server = wan[10].split(", ");
+
+                for (var j=0 ; j<txrx_list.length ; ++j) {
+                    var txrx = txrx_list[j].split("\t");
+                    if (txrx[0] == wan[0]) {
+                        var temp1 = txrx[2].split(",");
+                        var temp2 = txrx[4].split(",");
+                        var temp3 = txrx[1].split(",");
+                        $("#net_snd").html(temp1[0]);
+                        $("#net_snd_byte").html(temp1[1]);
+                        $("#net_rcv").html(temp2[0]);
+                        $("#net_rcv_byte").html(temp2[1]);
+                        $("#net_total").html(temp3[0]);
+                        $("#net_total_byte").html(temp3[1]);
+                        break;
+                    }
+                }
+                
+                $("#net_ip").html(wan[7]);
+                $("#net_gw").html(wan[8]);
+                if(dns_server[0].length > 0)
+                    $("#net_dns1").html(dns_server[0]);
+                if(dns_server[1].length > 0)
+                    $("#net_dns2").html(dns_server[1]);
+                break;
+            }
+        }
+
+        /* init info*/
+        $("#_modem_model").html(result[2]);
+        $("#_manufacturer").html(result[3]);
+        $("#_hw_version").html(result[4]);
+//        $("#_fw_ver").html(result[5]);
+
+        $("#_device_name").html(result[6]);
+        
+        var txt = window.lang.convert(result[7], top.default_lang);        
+        $("#_device_description").html(txt);
+        
+        argv.doRefresh(argv);
+    }
+    
+    this.doUpdate = function() {
+        var options = {
+            successFn:_this_.doUpdateCallBack,
+            errorFn:function(textStatus) {_this_.doRefresh(_this_);},
+            timeout:5000,
+            argv:_this_
+        };
+        mQueryRpc.reset();
+        mQueryRpc.addFunction("fti_netobj_update", "");
+        mQueryRpc.run(options);
+    }
+    
+    this.doInitializeCallBack = function (result, argv, error) {
+        if(result.length != 7 ){
+            _this_.doInitialize();
+            return;
+        }
+        $("#_modem_model").html(result[0]);
+        $("#_manufacturer").html(result[1]);
+        $("#_hw_version").html(result[2]);
+//        $("#_fw_ver").html(result[3]);
+
+        $("#_device_name").html(result[4]);
+
+        var txt = window.lang.convert(result[5], top.default_lang);        
+        $("#_device_description").html(txt);
+    }
+    
+    this.doInitialize = function() {
+        var options = {
+            successFn:_this_.doInitializeCallBack,
+            errorFn:function(textStatus) {_this_.doRefresh(_this_);},
+            timeout:5000,
+            argv:_this_
+        };
+        
+        IsInitialized = 1;
+        mInitQueryRpc.reset();
+        mInitQueryRpc.addFunction("fti_device_info", "");
+        mInitQueryRpc.run(options);
+    }
+    
+    this.setRefreshTime = function (value) {
+        if (value == "none") {
+            this.mRefreshTime = this.mDefRefreshTime;
+            if(IsInitialized == 0)
+            {
+                this.doInitialize();
+            }
+            this.doUpdate();
+        } else {
+            this.mRefreshTime = 30;
+        }
+    }
+    this.mErrFunc = function(textStatus) {_this_.doRefresh(_this_);};
+//    this.doUpdate();
+};
+
+
+/* -------------------------- */
+/*  GSM Services function      */
+/* -------------------------- */
+ServGSMObj = function (time) {
+    var _this_ = this;
+    var mQueryRpc = new RPC("servgsm_query");;
+    var mInitQueryRpc = new RPC("init_servgsm_query");
+    this.mQueryTimer = null;
+    this.mDefRefreshTime = time;
+    this.mRefreshTime = 1;
+
+    this.doRefresh = function (obj) {
+        if (obj.mQueryTimer) {clearTimeout(obj.mQueryTimer);}
+        obj.mQueryTimer = setTimeout(function() {obj.doUpdate();}, (obj.mRefreshTime * 1000));
+    }
+    
+    this.doUpdateCallBack = function (result, argv, error) {
+        if(result.length != 15 ){
+            _this_.doRefresh(_this_);
+            return;
+        }
+
+        var txt = window.lang.convert(result[0], top.default_lang);        
+        $("#gsm_technology").html(txt);
+        $("#gsm_pro_rev").html(result[1]);
+
+        txt = window.lang.convert(result[2], top.default_lang);        
+        $("#gsm_status").html(txt);
+        $("#gsm_rscp").html(result[3]);
+        $("#gsm_ecio").html(result[4]);
+        $("#gsm_rssi").html(result[5]);
+        $("#gsm_plmn").html(result[6]);
+        $("#gsm_cell_id").html(result[7]);
+        $("#gsm_band").html(result[8]);
+        $("#_imei").html(result[10]);
+        $("#gsm_meid").html(result[11]);
+        $("#gsm_msisdn").html(result[12]);
+
+        if(result[13] == "0")
+        {
+            $("#prl_title").html("");
+            $("#gsm_prlver").html("");
+        }
+        else
+        {
+            $("#prl_title").html("PRL Version");
+            $("#gsm_prlver").html(result[13]);
+        }
+
+        argv.doRefresh(argv);
+    }
+    
+    this.doUpdate = function(value) {
+        var options = {
+            successFn:_this_.doUpdateCallBack,
+            errorFn:function(textStatus) {_this_.doRefresh(_this_);},
+            timeout:5000,
+            argv:_this_
+        };
+            
+        mQueryRpc.reset();
+        mQueryRpc.addFunction("fti_gsm_update_info_get", "");
+        mQueryRpc.run(options);
+    }
+    
+    this.setRefreshTime = function (value) {
+        if (value == "none") {
+            this.mRefreshTime = this.mDefRefreshTime;
+            this.doUpdate();
+        } else {
+            this.mRefreshTime = 30;
+        }
+    }
+};
+
+
+/* -------------------------- */
+/*  Event function            */
+/* -------------------------- */
+$(function(){
+    $("div.fieldColumn > div:has(div.fieldMainTitle3), .fieldMainTitle3").click(function(){
+        $(this).next().toggle("fast");
+        var imgSrc = $(this).find(".open_icon").attr("src");
+        if(imgSrc == "img/close.png")
+        {
+            $(this).find(".open_icon").attr("src", "img/open.png");
+        }
+        else
+        {
+            $(this).find(".open_icon").attr("src", "img/close.png");
+        }
+    });
+});
+
+$(function(){
+    $("div.fieldSubColumn > div:has(div.fieldSubTitle), .fieldSubTitle").click(function(){
+        $(this).next().toggle("fast");
+    });
+});
+
+$(document).ready(function() {
+    window.lang = new jquery_lang_js();
+    window.lang.run();
+    window.lang.change(top.default_lang);
+
+    gServLTEObj = new ServLTEObj(1);
+    gNetObj    = new NetObj(1);
+    gServGSMObj = new ServGSMObj(1);
+
+    gNetObj.doInitialize();
+    gNetObj.setRefreshTime("none");
+
+    gServLTEObj.doInitialize();
+    gServLTEObj.setRefreshTime("none");
+
+    gServGSMObj.setRefreshTime("none");
+
+    var name = getField();
+    if (name != "") {
+    moveScrollToField(name);
+    }
+});
+
+var jStats={};
+-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0"><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" style="padding-bottom: 0px; padding-right: 0px; display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear:left"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxLoadedContent" style="width: 0px; height: 0px; overflow: hidden;" class=""></div><div id="cboxLoadingOverlay" class=""></div><div id="cboxLoadingGraphic" class=""></div><div id="cboxTitle" class=""></div><div id="cboxCurrent" class=""></div><div id="cboxNext" class=""></div><div id="cboxPrevious" class=""></div><div id="cboxSlideshow" class=""></div><div id="cboxClose" class=""></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear:left"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position:absolute; width:9999px; visibility:hidden; display:none"></div></div>
+<!-- page title -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr height="22">
+    <td valign="middle">
+        <span lang="en" class="page_title">Device &amp; Network</span>
+    </td>        
+</tr>
+<tr height="2">
+ <td height="1" background="./dot-green.gif"></td>
+</tr>
+</tbody></table>
+<div style="height:10px"></div>
+
+<div class="fieldColumn">
+    <div id="autoConnect" class="fieldMainTitle3 title-black" onclick=""><table width="100%"><tbody><tr><td lang="en">General Device &amp; Network Information</td><td width="30"><img id="open_icon" class="open_icon" name="open_icon" src="./close.png" border="0"></td></tr></tbody></table></div>
+    <div class="fieldContent display-none" id="ConnectionOption">
+        <div class="bGroup">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+        <tbody><tr valign="bottom">
+            <td width="100%">  
+                <table width="100%" cellpadding="3" cellspacing="1" border="0">            
+                    <tbody><tr>                
+                    <td width="55%" valign="top">                            
+                            <div lang="en" class="section_title" style="text-decoration:underline">General Device</div>
+                            <table>
+                                <tbody><tr><td lang="en" class="section_title" width="120">Device Name</td><td><div class="section_write" id="_device_name">Franklin R702</div></td></tr>
+                                <tr><td lang="en" class="section_title">Device Description</td><td><div class="section_write" id="_device_description">4G LTE Portable Wi-Fi Hotspot</div></td></tr>
+                                <tr><td lang="en" class="section_title">Manufacturer</td><td><div class="section_write" id="_manufacturer">Franklin Technology Inc.</div></td></tr>
+                                <tr><td lang="en" class="section_title">Modem Model</td><td><div class="section_write" id="_modem_model">R702</div></td></tr>
+                                <tr><td lang="en" class="section_title">Hardware Version</td><td><div class="section_write" id="_hw_version">MP1</div></td></tr>
+                                <tr><td lang="en" class="section_title">Firmware Version</td><td><div class="section_write" id="_fw_ver">R702F47.SM.M280 </div></td></tr>
+                                <tr><td lang="en" class="section_title">IMEI</td><td><div class="section_write" id="_imei">359241043123972</div></td></tr>
+                            </tbody></table>
+                     </td>
+                     <td width="45%" valign="top"> 
+                            <div lang="en" class="section_title" style="text-decoration:underline">General Network</div>
+                            <table>
+                                <tbody><tr><td lang="en" class="section_title" width="120">IP Address</td><td class="section_write" id="net_ip">169.159.117.161</td></tr>
+                                <tr><td lang="en" class="section_title">Gateway</td><td class="section_write" id="net_gw">169.159.117.162</td></tr>
+                                <tr><td lang="en" class="section_title">DNS Server</td><td class="section_write" id="net_dns1">154.66.2.98</td></tr>
+                                <tr><td lang="en" class="section_title"></td><td class="section_write" id="net_dns2">8.8.8.8</td></tr>
+                                <tr><td lang="en" class="section_title">Data Received</td><td class="section_write" id="net_rcv">3.39 GB</td></tr>
+                                <tr><td lang="en" class="section_title">&nbsp;</td><td class="section_write" id="net_rcv_byte">3389223856 bytes</td></tr>
+                                <tr><td lang="en" class="section_title">Data Sent</td><td class="section_write" id="net_snd">492.46 MB</td></tr>
+                                <tr><td lang="en" class="section_title">&nbsp;</td><td class="section_write" id="net_snd_byte">492460195 bytes</td></tr>
+                                <tr><td lang="en" class="section_title">Data Total</td><td class="section_write" id="net_total">3.88 GB</td></tr>
+                                <tr><td lang="en" class="section_title">&nbsp;</td><td class="section_write" id="net_total_byte">3881684051 bytes</td></tr>
+                            </tbody></table>                
+                     </td>            
+                    </tr>
+                </tbody></table>
+             </td>
+        </tr>
+        <tr height="2"><td></td></tr>
+        </tbody></table>
+        </div>
+    </div>
+</div>
+<div style="height:5px"></div>
+
+<div class="fieldColumn">
+    <div id="autoConnect" class="fieldMainTitle3 title-black" onclick=""><table width="100%"><tbody><tr><td lang="en">4G LTE Device &amp; Network Information</td><td width="30"><img id="open_icon" class="open_icon" name="open_icon" src="./close.png" border="0"></td></tr></tbody></table></div>
+    <div class="fieldContent display-none" id="ConnectionOption">
+        <div class="bGroup">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+        <tbody><tr valign="bottom">
+            <td width="100%">  
+                <table width="100%" cellpadding="3" cellspacing="1" border="0">
+                    <tbody><tr>
+                    <td width="55%" valign="top">
+                            <div lang="en" class="section_title" style="text-decoration:underline">4G LTE Device</div>
+                            <table>
+                                <tbody><tr><td lang="en" class="section_title" width="120">Technology</td><td><div class="section_write" id="lte_technology">LTE</div></td></tr>
+                                <tr><td lang="en" class="section_title">IMSI</td><td><div class="section_write" id="lte_imsi">621270000407526</div></td></tr>
+                                <tr><td lang="en" class="section_title">ICCID</td><td><div class="section_write" id="lte_iccid">89234270000004075265</div></td></tr>
+                                <tr><td lang="en" class="section_title">USIM State</td><td><div class="section_write" id="usim_state">Present</div></td></tr>
+                            </tbody></table>
+                     </td>
+                     <td width="45%" valign="top"> 
+                            <div lang="en" class="section_title" style="text-decoration:underline">4G LTE Network</div>
+                            <table>
+                                <tbody><tr><td lang="en" class="section_title" width="120">Status</td><td class="section_write" id="lte_status">Connected</td></tr>
+                                <tr><td lang="en" class="section_title">SNR</td><td class="section_write" id="lte_snr">-3.0</td></tr>
+                                <tr><td lang="en" class="section_title">RSRP</td><td class="section_write" id="lte_rsrp">-113</td></tr>
+                                <tr><td lang="en" class="section_title">RSRQ</td><td class="section_write" id="lte_rsrq">-17</td></tr>
+                                <tr><td lang="en" class="section_title">PLMN ID</td><td class="section_write" id="lte_plmn_id">621 027</td></tr>
+                            </tbody></table>                
+                     </td>            
+                    </tr>
+                </tbody></table>
+             </td>
+        </tr>
+        <tr height="2">
+        <td></td></tr>
+        </tbody></table>
+        </div>
+    </div>
+</div>
+<div style="height:5px"></div>
+
+<div class="fieldColumn display-none">
+    <div id="autoConnect" class="fieldMainTitle3 title-black" onclick=""><table width="100%"><tbody><tr><td lang="en">2G/3G Device &amp; Network Information</td><td width="30"><img id="open_icon" class="open_icon" name="open_icon" src="./close.png" border="0"></td></tr></tbody></table></div>
+    <div class="fieldContent display-none" id="ConnectionOption">
+        <div class="bGroup">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+        <tbody><tr valign="bottom">
+            <td width="100%">  
+                <table width="100%" cellpadding="3" cellspacing="1" border="0">
+                    <tbody><tr>
+                    <td width="55%" valign="top">                            
+                            <div lang="en" class="section_title" style="text-decoration:underline">2G/3G Device</div>
+                            <table>
+                                <tbody><tr><td lang="en" class="section_title" width="120">Technology</td><td><div class="section_write" id="gsm_technology">No Service</div></td></tr>
+                                <tr><td lang="en" class="section_title">Band</td><td><div class="section_write" id="gsm_band">--</div></td></tr>
+                                <tr><td lang="en" class="section_title">Cell ID</td><td><div class="section_write" id="gsm_cell_id">--</div></td></tr>
+<!-- 
+                                <tr><td lang='en' class="section_title">MEID</td><td><div class="section_write" id="gsm_meid"></div></td></tr>
+-->
+                                <tr><td lang="en" class="section_title">MSISDN</td><td><div class="section_write" id="gsm_msisdn"></div></td></tr>
+                                <tr><td lang="en" class="section_title" id="prl_title"></td><td><div class="section_write" id="gsm_prlver"></div></td></tr>
+                            </tbody></table>
+                     </td>
+                    <td width="45%" valign="top">                            
+                            <div lang="en" class="section_title" style="text-decoration:underline">2G/3G Network</div>
+                            <table>
+                                <tbody><tr><td lang="en" class="section_title" width="120">Status</td><td><div class="section_write" id="gsm_status">Disconnected</div></td></tr>                        
+                                <tr><td lang="en" class="section_title" width="120">RSCP</td><td><div class="section_write" id="gsm_rscp">--</div></td></tr>                      
+                                <tr><td lang="en" class="section_title">Ec/Io</td><td><div class="section_write" id="gsm_ecio">--</div></td></tr>
+                                <tr><td lang="en" class="section_title" width="120">RSSI</td><td><div class="section_write" id="gsm_rssi">--</div></td></tr>                      
+                                <tr><td lang="en" class="section_title">PLMN ID</td><td class="section_write" id="gsm_plmn">--- ---</td></tr>
+                            </tbody></table>
+                     </td>
+                     </tr>       
+                </tbody></table>
+             </td>
+        </tr>
+        <tr height="2">
+        <td></td></tr>
+        </tbody></table>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body></html>
